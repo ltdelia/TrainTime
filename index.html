@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Style.CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!--Google Font Arvo Installed -->
+	<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+	<!--jQuery-->
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+
+	<!--Firebase-->
+	<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+
+	<!-- Moment.js -->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+	<title>Train Time Scheduler</title>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Train Time</h1>
+				<p>All Aboard!</p>
+			</div>
+		</div>
+			<div class="panel panel-success">
+				<div class="panel-heading">Current Train Schedule</div>
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<th>Train Name</th>
+								<th>Destination</th>
+								<th>Frequency (min)</th>
+								<th>Next Arrival</th>
+								<th>Minutes Away</th>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+			<div class="panel panel-success">
+				<div class="panel-heading">Add a Train</div>
+				<div class="panel-body">
+					<form>
+						<div class="form-group">
+							<label>Train Name</label>
+							<input type="text" class="form-control" id="name">
+						</div>
+						<div class="form-group">
+							<label>Destination</label>
+							<input type="text" class="form-control" id="destination">
+						</div>
+						<div class="form-group">
+							<label>First Train Time (HH:mm -- military time)</label>
+							<input type="text" class="form-control" id="firsttime">
+						</div>
+						<div class="form-group">
+							<label>Frequency (min)</label>
+							<input type="text" class="form-control" id="frequency">
+						</div>	
+						<div class="form-group">
+							<input type="submit" class="btn btn-success" id="submit">
+						</div>					
+					</form>
+				</div>
+			</div>
+	</div>
+
+	<script type="text/javascript" src="train.js"></script>
+</body>
+</html>
