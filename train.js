@@ -21,7 +21,24 @@ $('#submit').on('click', function(){
 	firstTime = $('#firstTime').val().trim();
 	frequency = $('#frequency').val().trim();
 
+	// Pushing a new entry to Firebase, containing these variables
+	trainData.push({
+		name: name,
+		destination: destination,
+		firstTime: firstTime,
+		frequency: frequency,
+	});
+
+	return false;
+});
+
+trainData.on('child_added', function(childSnapshot, prevChildKey){
+	// Gives us the entire object for each child added to Firebase
+	console.log(childSnapshot.val());
+
 	// How to determine the nextTrain and minutesUntilTrain
+	
+	firstTime = $('#firstTime').val().trim();
 	
 	// 1. Convert the firstTime, push back 1 year to ensure it's before currentTime
 	var firstTimeConverted = moment(firstTime,"hh:mm").subtract(1, "years");
@@ -43,39 +60,13 @@ $('#submit').on('click', function(){
 	var nextTime = moment().add(minutesUntilTrain, "minutes");
 	console.log("Arrival Time: " + moment(nextTime).format("hh:mm"));
 
-	// Pushing a new entry to Firebase, containing these variables
-	trainData.push({
-		name: name,
-		destination: destination,
-		firstTime: firstTime,
-		frequency: frequency,
-		nextTime: nextTime,
-		minutesUntilTrain: minutesUntilTrain,
-		// Timestamp in unix
-		dateAdded: Firebase.ServerValue.TIMESTAMP
-	});
-
-	// Appending the variables to HTML
-	$('.table').append("<tr>"+
-					   "<td>"+name+"</td>"+
-					   "<td>"+destination+"</td>"+
-					   "<td>"+frequency+"</td>"+
-					   "<td>"+nextTime+"</td>"+
-					   "<td>"+minutesUntilTrain+"</td>"+
-					   "</tr>");
-	return false;
-});
-
-trainData.on('child_added', function(childSnapshot, prevChildKey){
-	// Gives us the entire object for each child added to Firebase
-	console.log(childSnapshot.val());
 	// Appending the variables to HTML
 	$('.table').append("<tr>"+
 					   "<td>"+childSnapshot.val().name+"</td>"+
 					   "<td>"+childSnapshot.val().destination+"</td>"+
 					   "<td>"+childSnapshot.val().frequency+"</td>"+
-					   "<td>"+childSnapshot.val().nextTime+"</td>"+
-					   "<td>"+childSnapshot.val().minutesUntilTrain+"</td>"+
+					   "<td>"+moment(nextTime).format("hh:mm")+"</td>"+
+					   "<td>"+minutesUntilTrain+"</td>"+
 					   "</tr>");
 
 
