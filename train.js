@@ -1,10 +1,3 @@
-// Global Variables
-// These are empty to start, since the administrator will input them
-var name = "";
-var destination = "";
-var firstTime = "";
-var frequency = "";
-
 // This is the link to our Firebase databse, storing all of the data
 var trainData = new Firebase("https://choochoocheechee.firebaseio.com/");
 
@@ -16,10 +9,10 @@ console.log("Current Time: " + currentTime);
 $('#submit').on('click', function(){
 	
 	// Grabbing the values for each variable, from their specific id in HTML
-	name = $('#name').val().trim();
-	destination = $('#destination').val().trim();
-	firstTime = $('#firstTime').val().trim();
-	frequency = $('#frequency').val().trim();
+	var name = $('#name').val().trim();
+	var destination = $('#destination').val().trim();
+	var firstTime = $('#firstTime').val().trim();
+	var frequency = $('#frequency').val().trim();
 
 	// Pushing a new entry to Firebase, containing these variables
 	trainData.push({
@@ -28,6 +21,11 @@ $('#submit').on('click', function(){
 		firstTime: firstTime,
 		frequency: frequency,
 	});
+
+	$('#name').val("")
+	$('#destination').val("")
+	$('#firstTime').val("")
+	$('#frequency').val("")
 
 	return false;
 });
@@ -53,7 +51,7 @@ trainData.on('child_added', function(childSnapshot, prevChildKey){
 	console.log(remainder);
 
 	// 4. Minutes until the train
-	var minutesUntilTrain = frequency - remainder;
+	var minutesUntilTrain = childSnapshot.val().frequency - remainder;
 	console.log("Minutes Until Train: " + minutesUntilTrain);
 
 	// 5. Add minutesUntilTrain to currentTime to get nextTime
