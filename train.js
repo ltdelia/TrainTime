@@ -47,7 +47,7 @@ trainData.on('child_added', function(childSnapshot, prevChildKey){
 	console.log("Difference in time: " + diffTime);
 
 	// 3. Determine the time apart (difference in time % frequency)
-	var remainder = diffTime % frequency;
+	var remainder = diffTime % childSnapshot.val().frequency;
 	console.log(remainder);
 
 	// 4. Minutes until the train
