@@ -38,7 +38,7 @@ trainData.on('child_added', function(childSnapshot, prevChildKey){
 
 	// How to determine the nextTrain and minutesUntilTrain
 	
-	firstTime = $('#firstTime').val().trim();
+	firstTime = childSnapshot.val().firstTime;
 	
 	// 1. Convert the firstTime, push back 1 year to ensure it's before currentTime
 	var firstTimeConverted = moment(firstTime,"hh:mm").subtract(1, "years");
