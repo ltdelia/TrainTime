@@ -1,4 +1,4 @@
-// This is the link to our Firebase databse, storing all of the data
+// This is the link to our Firebase database, storing all of the data
 var trainData = new Firebase("https://choochoocheechee.firebaseio.com/");
 
 // This is the current time
